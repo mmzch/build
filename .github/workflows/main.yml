@@ -7,6 +7,10 @@ jobs:
   build-kernel:
     runs-on: ubuntu-latest
     steps:
+      - name: Set swap to 10G
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 10
       - uses: actions/checkout@v3
       - name: build
         run: |
@@ -27,4 +31,20 @@ jobs:
           patch -p1 < su.patch
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out stockish_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j16
-          
+          cd ..
+          git clone https://github.com/osm0sis/AnyKernel3
+          sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
+          sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=auto;!g' AnyKernel3/anykernel.sh
+          sed -i 's/is_slot_device=0;/is_slot_device=auto;/g' AnyKernel3/anykernel.sh
+          cp ../out/arch/arm64/boot/Image AnyKernel3/
+          rm -rf AnyKernel3/.git* AnyKernel3/README.md
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: Image
+          path: ~/kernel/out/arch/arm64/boot/Image
+      - name: Upload AnyKernel3
+        uses: actions/upload-artifact@v3
+        with:
+          name: AnyKernel3
+          path: ~/AnyKernel3/*
