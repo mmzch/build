@@ -16,7 +16,7 @@ jobs:
         run: |
           cd ~
           git clone https://github.com/yaap/kernel_oneplus_sm8150.git -b fourteen kernel
-          git clone https://gitlab.com/moehacker/clang-r498229b.git clang
+          git clone https://github.com/mingmingzhichua/clang.git clang
           export HOME=~/
           export CLANG_PATH=$HOME/clang/bin
           export PATH="$CLANG_PATH:$PATH"
