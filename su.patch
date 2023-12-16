@@ -18,6 +18,8 @@ index ceee66f34ed3..6efc54049fff 100644
 +
  	if (disposition != INPUT_IGNORE_EVENT && type != EV_SYN)
  		add_input_randomness(type, code, value);
+ 
+
 diff --git a/fs/exec.c b/fs/exec.c
 index 3cc864bd8310..762d49eeac5b 100644
 --- a/fs/exec.c
