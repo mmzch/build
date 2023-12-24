@@ -26,7 +26,7 @@ jobs:
           export KBUILD_BUILD_HOST=wanghanshuo
           cd kernel
           sudo apt install axel 
-          make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out vendor//sdmsteppe-perf_defconfig
+          make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out vendor/sdmsteppe-perf_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j16
           cd ..
           git clone https://github.com/osm0sis/AnyKernel3
