@@ -22,8 +22,8 @@ jobs:
           export PATH="$CLANG_PATH:$PATH"
           export CROSS_COMPILE=aarch64-linux-gnu-
           export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
-          export KBUILD_BUILD_USER=mingmingzhichu
-          export KBUILD_BUILD_HOST=wanghanshuo
+          export KBUILD_BUILD_USER=大哥
+          export KBUILD_BUILD_HOST=王寒朔
           cd kernel
           sudo apt install axel 
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
