@@ -1,5 +1,6 @@
           git clone https://github.com/crdroidandroid/android_kernel_oneplus_sm8150.git -b 11.0 kernel
           git clone https://gitlab.com/moehacker/clang-r498229b.git clang
+          sudo apt install axel
           export HOME=~/
           export CLANG_PATH=$HOME/clang/bin
           export PATH="$CLANG_PATH:$PATH"
