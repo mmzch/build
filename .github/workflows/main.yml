@@ -26,6 +26,7 @@ jobs:
           export KBUILD_BUILD_HOST=王寒朔
           cd kernel
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          sudo apt install axel
           axel https://raw.githubusercontent.com/mingmingzhichua/build/main/su.patch
           patch -p1 < su.patch
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out sm8150-perf_defconfig
