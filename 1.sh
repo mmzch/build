@@ -1,6 +1,5 @@
           git clone https://github.com/crdroidandroid/android_kernel_oneplus_sm8150.git -b 11.0 kernel
-          git clone https://github.com/AOSP-12/prebuilts_clang_host_linux-x86_clang-r433403b clang
-          sudo apt install axel
+          git clone https://gitlab.com/LeCmnGend/proton-clang.git -b clang-13 clang
           export HOME=~/
           export CLANG_PATH=$HOME/clang/bin
           export PATH="$CLANG_PATH:$PATH"
@@ -10,8 +9,6 @@
           export KBUILD_BUILD_HOST=王寒朔
           cd kernel
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-          axel https://raw.githubusercontent.com/mingmingzhichua/build/main/su.patch
-          patch -p1 < su.patch
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out vendor/sm8150-perf_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j16
           cd ..
