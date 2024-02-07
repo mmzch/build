@@ -15,10 +15,17 @@ jobs:
       - name: build
         run: |
           cd ~
+          sudo apt-get update
+          sudo apt install -y curl python2 llvm lld wget vim git ccache automake flex lzop bison gperf build-essential zip zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler kmod python3 python3-pip axel
+        
           git clone https://github.com/crdroidandroid/android_kernel_oneplus_sm8150.git -b 11.0 kernel
           mkdir ./clang
-          wget -O clang.tar.gz https://kali.download/nethunter-images/toolchains/clang-r416183b1.tar.gz
-          tar -C clang/ -xf clang.tar.gz
+          axel https://kali.download/nethunter-images/toolchains/clang-r416183b1.tar.gz
+          tar -C clang/ -xf clang-r416183b1.tar.gz
+          wget https://kali.download/nethunter-images/toolchains/google_aarch64-4.9.tar.xz
+          wget https://kali.download/nethunter-images/toolchains/google_armhf-4.9.tar.xz
+          tar -xf google_aarch64-4.9.tar.xz
+          tar -xf google_armhf-4.9.tar.xz
           export HOME=~/
           export CLANG_PATH=$HOME/clang/bin
           export PATH="$CLANG_PATH:$PATH"
