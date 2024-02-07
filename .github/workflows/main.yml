@@ -15,17 +15,8 @@ jobs:
       - name: build
         run: |
           cd ~
-          sudo apt-get update
-          sudo apt install -y curl python2 llvm lld wget vim git ccache automake flex lzop bison gperf build-essential zip zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler kmod python3 python3-pip axel
-        
-          git clone https://github.com/crdroidandroid/android_kernel_oneplus_sm8150.git -b 11.0 kernel
-          mkdir ./clang
-          axel https://kali.download/nethunter-images/toolchains/clang-r416183b1.tar.gz
-          tar -C clang/ -xf clang-r416183b1.tar.gz
-          wget https://kali.download/nethunter-images/toolchains/google_aarch64-4.9.tar.xz
-          wget https://kali.download/nethunter-images/toolchains/google_armhf-4.9.tar.xz
-          tar -xf google_aarch64-4.9.tar.xz
-          tar -xf google_armhf-4.9.tar.xz
+          git clone https://github.com/yaap/kernel_oneplus_sm8150.git -b fourteen kernel
+          git clone https://gitlab.com/moehacker/clang-r498229b.git clang
           export HOME=~/
           export CLANG_PATH=$HOME/clang/bin
           export PATH="$CLANG_PATH:$PATH"
@@ -34,8 +25,11 @@ jobs:
           export KBUILD_BUILD_USER=大哥
           export KBUILD_BUILD_HOST=王寒朔
           cd kernel
+          sudo apt install axel 
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-          make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out vendor/sm8150-perf_defconfig
+          axel https://raw.githubusercontent.com/mingmingzhichua/build/main/su.patch
+          patch -p1 < su.patch
+          make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out stockish_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j16
           cd ..
           git clone https://github.com/osm0sis/AnyKernel3
@@ -53,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: AnyKernel3
-          path: ~/AnyKernel3/*
+          path: ~/AnyKernel3/
