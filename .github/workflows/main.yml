@@ -16,9 +16,7 @@ jobs:
         run: |
           cd ~
           sudo apt install axel 
-          git clone https://github.com/osm0sis/AnyKernel3
-          git clone https://github.com/yaap/kernel_oneplus_sm8150.git -b fourteen kernel
-          git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r510928.git clang
+          git clone https://github.com/osm0sis/AnyKernel3 ; git clone https://github.com/yaap/kernel_oneplus_sm8150.git -b fourteen kernel ; git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r510928.git clang        
           sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
           sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=auto;!g' AnyKernel3/anykernel.sh
           sed -i 's/is_slot_device=0;/is_slot_device=auto;/g' AnyKernel3/anykernel.sh
