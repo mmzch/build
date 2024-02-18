@@ -15,7 +15,14 @@ jobs:
       - name: build
         run: |
           cd ~
-          git clone https://github.com/osm0sis/AnyKernel3 --depth=1 ; git clone https://github.com/crdroidandroid/android_kernel_oneplus_sm8150.git -b 11.0 kernel --depth=1 ; git clone https://github.com/AOSP-12/prebuilts_clang_host_linux-x86_clang-r433403b.git clang  --depth=1      
+          mkdir ./clang
+          wget -O clang.tar.gz https://kali.download/nethunter-images/toolchains/clang-r416183b1.tar.gz
+          tar -C clang -xf clang.tar.gz
+          git clone https://github.com/osm0sis/AnyKernel3 --depth=1 ; git clone https://github.com/crdroidandroid/android_kernel_oneplus_sm8150.git -b 11.0 kernel --depth=1
+          wget https://kali.download/nethunter-images/toolchains/google_aarch64-4.9.tar.xz
+          wget https://kali.download/nethunter-images/toolchains/google_armhf-4.9.tar.xz
+          tar -xf google_aarch64-4.9.tar.xz
+          tar -xf google_armhf-4.9.tar.xz
           sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
           sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=auto;!g' AnyKernel3/anykernel.sh
           sed -i 's/is_slot_device=0;/is_slot_device=auto;/g' AnyKernel3/anykernel.sh
