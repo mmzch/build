@@ -30,6 +30,9 @@ jobs:
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
           axel https://raw.githubusercontent.com/mingmingzhichua/build/main/su.patch
           patch -p1 < su.patch
+          echo "CONFIG_MODULE_SIG=n" >> arch/arm64/configs/gulch_defconfig
+          echo "CONFIG_MODULE_SIG_FORCE=n" >> arch/arm64/configs/gulch_defconfig
+          echo "CONFIG_MODULE_SIG_ALL=n" >> arch/arm64/configs/gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j$(nproc --all)
           cp ../out/arch/arm64/boot/Image ../AnyKernel3/
