@@ -29,7 +29,7 @@ jobs:
           echo "# CONFIG_KALLSYMS_ALL=y" >> arch/arm64/configs/gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j$(nproc --all)
-          cp ../out/arch/arm64/boot/Image ../AnyKernel3/
+          
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
