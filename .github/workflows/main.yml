@@ -14,6 +14,7 @@ jobs:
       - name: build
         run: |
           cd ~
+          apt install axel
           git clone https://github.com/piscesmk2013/kernel_oneplus_sm8150.git -b fourteen kernel --depth=1
           git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r510928.git clang  --depth=1      
           export KBUILD_BUILD_USER=mmzch
@@ -26,6 +27,9 @@ jobs:
           echo "CONFIG_MODULE_SIG=n" >> arch/arm64/configs/gulch_defconfig
           echo "CONFIG_MODULE_SIG_FORCE=n" >> arch/arm64/configs/gulch_defconfig
           echo "CONFIG_MODULE_SIG_ALL=n" >> arch/arm64/configs/gulch_defconfig
+          cd kernel
+          rm ./module.c
+          axel https://raw.githubusercontent.com/mmzch/build/main/module.c
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j$(nproc --all)
           cd ~
