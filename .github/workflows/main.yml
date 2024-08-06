@@ -16,6 +16,7 @@ jobs:
           cd ~
           git clone https://github.com/piscesmk2013/kernel_oneplus_sm8150.git -b fourteen kernel --depth=1
           git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r510928.git clang  --depth=1      
+          export KBUILD_BUILD_USER=大哥
           export HOME=~/
           export CLANG_PATH=$HOME/clang/bin
           export PATH="$CLANG_PATH:$PATH"
