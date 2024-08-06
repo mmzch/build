@@ -29,9 +29,9 @@ jobs:
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j$(nproc --all)
           cd ~
-          zip -q -r ./kernel.zip ~/out/arch/arm64/boot/
+          zip -q -r ~/kernel.zip ~/out/arch/arm64/boot/
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
           name: kernel.zip
-          path: ./kernel.zip
+          path: ~/kernel.zip
