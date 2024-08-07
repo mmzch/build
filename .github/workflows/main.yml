@@ -24,6 +24,9 @@ jobs:
           export CROSS_COMPILE=aarch64-linux-gnu-
           export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
           cd kernel
+          echo "CONFIG_MODULES=y" >> arch/arm64/configs/gulch_defconfig
+          echo "CONFIG_MODULE_UNLOAD=y" >> arch/arm64/configs/gulch_defconfig
+          echo "CONFIG_MODVERSIONS=y" >> arch/arm64/configs/gulch_defconfig
           echo "CONFIG_MODULE_SIG=n" >> arch/arm64/configs/gulch_defconfig
           echo "CONFIG_MODULE_SIG_FORCE=n" >> arch/arm64/configs/gulch_defconfig
           echo "CONFIG_MODULE_SIG_ALL=n" >> arch/arm64/configs/gulch_defconfig
