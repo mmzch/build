@@ -30,9 +30,9 @@ jobs:
           export CROSS_COMPILE=aarch64-linux-gnu-
           export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
           cd kernel
-          echo "CONFIG_MODULE_SIG=n" >> arch/arm64/configs/gulch_defconfig
-          echo "CONFIG_MODULE_SIG_FORCE=n" >> arch/arm64/configs/gulch_defconfig
-          echo "CONFIG_MODULE_SIG_ALL=n" >> arch/arm64/configs/gulch_defconfig
+          echo "CONFIG_MODULE_SIG=n" >> arch/arm64/configs/vendor/sm8150-perf_defconfig
+          echo "CONFIG_MODULE_SIG_FORCE=n" >> arch/arm64/configs/vendor/sm8150-perf_defconfig
+          echo "CONFIG_MODULE_SIG_ALL=n" >> arch/arm64/configs/vendor/sm8150-perf_defconfig
           cd kernel
           cd ..
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out gulch_defconfig
