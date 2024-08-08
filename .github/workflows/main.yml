@@ -18,6 +18,9 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install openjdk-8-jdk -y
+        sudo apt-get install python3-pip -y
+        sudo pip3 install --upgrade pip
+        sudo pip3 install repo
         mkdir -p ~/rom
         cd ~/rom
         repo init -u https://github.com/crdroidandroid/android.git -b 11.0
