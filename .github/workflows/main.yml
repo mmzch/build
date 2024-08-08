@@ -17,10 +17,13 @@ jobs:
     - name: Initialize and sync repo
       run: |
         sudo apt-get update
-        sudo apt-get install curl openjdk-8-jdk -y
+        sudo apt-get install openjdk-8-jdk -y
+        sudo apt-get install curl -y
+        mkdir -p ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
-        export PATH=~/bin:$PATH
+        echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
+        source ~/.bashrc
         mkdir -p ~/rom
         cd ~/rom
         repo init -u https://github.com/crdroidandroid/android.git -b 11.0
