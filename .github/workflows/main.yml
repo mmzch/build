@@ -23,11 +23,12 @@ jobs:
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
         echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
+        export PATH=~/bin:$PATH
         source ~/.bashrc
         mkdir -p ~/rom
         cd ~/rom
-        repo init -u https://github.com/crdroidandroid/android.git -b 11.0
-        repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        ~/bin/repo init -u https://github.com/crdroidandroid/android.git -b 11.0
+        ~/bin/repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
     - name: Clone device, kernel, vendor trees
       run: |
