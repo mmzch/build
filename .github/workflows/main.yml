@@ -27,8 +27,8 @@ jobs:
         source ~/.bashrc
         mkdir -p ~/rom
         cd ~/rom
-        ~/bin/repo init -u https://github.com/crdroidandroid/android.git -b 11.0
-        ~/bin/repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+        ~/bin/repo init -u https://github.com/crdroidandroid/android.git -b 11.0 --depth=1
+        ~/bin/repo sync -c --no-clone-bundle --no-tags --optimized-fetch
 
     - name: Clone device, kernel, vendor trees
       run: |
