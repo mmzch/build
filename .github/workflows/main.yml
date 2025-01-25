@@ -26,7 +26,6 @@ jobs:
           cd kernel
           axel https://raw.githubusercontent.com/mingmingzhichua/build/main/su.patch
           patch -p1 < su.patch
-          curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out gulch_defconfig
           make ARCH=arm64 CC=clang LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip O=../out -j$(nproc --all)
           cd ~
