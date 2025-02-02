@@ -32,7 +32,7 @@ jobs:
           cd ~
           zip -r ~/kernel.zip ~/out/arch/arm64/boot/
       - name: Upload
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: kernel.zip
           path: ~/kernel.zip
